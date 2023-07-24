@@ -1,7 +1,7 @@
 import React from 'react';
 // import AddingCountry from './components/AddCountry/AddCountry'; // Assure-toi d'importer correctement AddingCountry
 // import Layout from './Layout/Layout';
-import { createBrowserRouter, RouterProvider, Routes, Router, Route, useLoaderData, Form } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Routes, Router, Route, useLoaderData, Form, useActionData } from 'react-router-dom';
 
 let router = createBrowserRouter([
   {
@@ -25,6 +25,7 @@ function Root() {
 
 // Form's elements
 function AddingCountry() {
+  const errors = useActionData();
   return (
     <>
       <Form method='post' action='http://localhost:8000/country'>
