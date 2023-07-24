@@ -1,13 +1,13 @@
 import Footer from './Footer/Footer';
 import Header from "./Header/Header";
-import { Children } from 'react';
+import AddingCountry from '../components/AddCountry/AddCountry';
+// import { Children } from 'react';
 
 export default function Layout() {
-
   return (
     <>
       <Header />
-      <main>{Children}</main>
+      <main><AddingCountry /></main>
       <Footer />
     </>
   )
