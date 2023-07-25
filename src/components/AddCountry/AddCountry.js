@@ -47,6 +47,6 @@ export async function action({ request }) {
     return errors;
   }
 
-  await createUser(email, password)
+  await createCountry(country, language, capital)
   return redirect('/')
 }

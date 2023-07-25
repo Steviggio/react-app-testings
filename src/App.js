@@ -2,6 +2,7 @@ import React from 'react';
 // import AddingCountry from './components/AddCountry/AddCountry'; // Assure-toi d'importer correctement AddingCountry
 // import Layout from './Layout/Layout';
 import { createBrowserRouter, RouterProvider, Routes, Router, Route, useLoaderData, Form, useActionData } from 'react-router-dom';
+import FetchInfo from './components/FetchInfo/Fetch-info';
 
 let router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ function Root() {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/add-country' element={<AddingCountry />} />
+      <Route path='/countries' element={<FetchInfo />} />
     </Routes>
   )
 }

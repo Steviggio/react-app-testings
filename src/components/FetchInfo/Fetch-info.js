@@ -5,7 +5,7 @@ function FetchInfo() {
   const [data, setData] = useState([]);
 // Fetching the datas from my the configured backend route
   useEffect(() => {
-    fetch("http://localhost:8000/data")
+    fetch("http://localhost:8000/api/country")
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error('An error as occurred during the gathering process of the datas'));
@@ -16,7 +16,7 @@ function FetchInfo() {
     <div>
       <ul>
         {data.map((item) => (
-          <li key={item.id}>{item.country}</li>
+          <li key={item.id}>{item.name}</li>
         ))}
       </ul>
       <ul>
