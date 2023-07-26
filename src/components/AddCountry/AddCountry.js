@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, redirect, useActionData } from 'react-router-dom';
 
-export default function AddingCountry() {
+
+
+function AddingCountry() {
   const errors = useActionData();
 
   return (
     <>
-      <Form method='post' action='http://localhost:8000/country'>
+      <Form method='post' action={action}>
         <p><input type='text' name='country' placeholder='Name of the country' />
           {errors?.country && <span>{errors.country}</span>}
         </p>
@@ -20,33 +22,34 @@ export default function AddingCountry() {
   );
 }
 
-export async function action({ request }) {
-  const formData = await request.formData();
-  const country = formData.get('country');
-  const language = formData.get('language');
-  const capital = formData.get('capital');
-  const errors = {};
 
-  if (typeof country !== 'string') {
-    errors.country =
-      "This is not a country"
-  }
-
-  if (typeof language !== 'string') {
-    errors.language =
-      "This is not a language"
-  }
-
-
-  if (typeof capital !== 'string') {
-    errors.capital =
-      "This is not a capital"
-  }
-
-  if (Object.keys(errors).length) {
-    return errors;
-  }
-
-  await createCountry(country, language, capital)
-  return redirect('/')
+async function loader({ params }) {
+  const data = await getDatas(params.body);
+  return { data };
 }
+
+async function action({ request }) {
+  const data = Object.fromEntries(await request.formData());
+  console.log(data)
+}
+
+
+// async function action({ request }) {
+//   await fetch("http://localhost://8000/api/country",
+//     {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "Application/json",
+//         "Accept": "*"
+//       },
+//       body: await JSON.stringify(request.FormData()),
+//     }).then(response => {
+//       if (response.status === 201) {
+//         console.log("Cet élément à bien été ajouté à la liste!");
+//         // data.reset()
+//       }
+//     });
+//   redirect("/")
+// }
+
+export { AddingCountry, action };

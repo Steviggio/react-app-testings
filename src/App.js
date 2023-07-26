@@ -3,6 +3,7 @@ import React from 'react';
 // import Layout from './Layout/Layout';
 import { createBrowserRouter, RouterProvider, Routes, Router, Route, useLoaderData, Form, useActionData } from 'react-router-dom';
 import FetchInfo from './components/FetchInfo/Fetch-info';
+import { AddingCountry, action } from './components/AddCountry/AddCountry';
 
 let router = createBrowserRouter([
   {
@@ -19,26 +20,13 @@ function Root() {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/add-country' element={<AddingCountry />} />
+      <Route path='/add-country' element={<AddingCountry />} action="/api/country" />
       <Route path='/countries' element={<FetchInfo />} />
     </Routes>
   )
 }
 
-// Form's elements
-function AddingCountry() {
-  const errors = useActionData();
-  return (
-    <>
-      <Form method='post' action='http://localhost:8000/country'>
-        <input type='text' name='country' placeholder='Name of the country' />
-        <input type='text' name='language' placeholder='Language' />
-        <input type='text' name='capital' placeholder='Capital' />
-        <button type='submit'>Create</button>
-      </Form>
-    </>
-  );
-}
+
 
 function Home() {
   return (
