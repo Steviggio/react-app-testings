@@ -1,6 +1,5 @@
-import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
-import { Form, redirect, useActionData } from 'react-router-dom';
+import React from 'react';
+import { Form, useActionData } from 'react-router-dom';
 
 
 // async function getDatas({ request }) {
@@ -20,10 +19,10 @@ export default function AddingCountry() {
 
     const form = event.target;
     const formData = new FormData(form);
-
-    fetch("http://localhost:8000/api/country", { method: "POST", body: formData });
-
     const formJSON = Object.fromEntries(formData.entries());
+
+    fetch("http://localhost:8000/api/country", { method: "POST", headers: { "Accept": "*/*", "Content-Type": "Application/json" }, body: formJSON });
+
     console.log(formJSON)
   };
 
