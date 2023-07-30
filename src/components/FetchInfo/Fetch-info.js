@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 function FetchInfo() {
   const [data, setData] = useState([]);
-// Fetching the datas from my the configured backend route
+  // Fetching the datas from my the configured backend route
   useEffect(() => {
     fetch("http://localhost:8000/api/country")
       .then((response) => response.json())

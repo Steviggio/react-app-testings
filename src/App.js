@@ -20,7 +20,7 @@ function Root() {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/add-country' element={<AddingCountry />} action="/api/country" />
+      <Route path='/add-country' element={<AddingCountry />} />
       <Route path='/countries' element={<FetchInfo />} />
     </Routes>
   )

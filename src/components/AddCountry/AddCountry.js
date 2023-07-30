@@ -2,6 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Form, redirect, useActionData } from 'react-router-dom';
 
 
+async function getDatas({ request }) {
+  const datas = await fetch("http://localhost:8000/api/country", { method: "POST", headers: "Application/json" })
+    .then((response) => response.json())
+    .catch((error) => {
+      console.log(error)
+    })
+}
 
 function AddingCountry() {
   const errors = useActionData();
