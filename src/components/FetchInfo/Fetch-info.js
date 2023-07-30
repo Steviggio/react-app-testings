@@ -8,7 +8,7 @@ function FetchInfo() {
     fetch("http://localhost:8000/api/country")
       .then((response) => response.json())
       .then((data) => setData(data))
-      .catch((error) => console.error('An error as occurred during the gathering process of the datas'));
+      .catch((error) => console.error('An error as occurred during the datas request'));
   }, []);
 
   // const info = 'Voici des infos récupérées'

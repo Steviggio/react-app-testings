@@ -3,7 +3,7 @@ import React from 'react';
 // import Layout from './Layout/Layout';
 import { createBrowserRouter, RouterProvider, Routes, Router, Route, useLoaderData, Form, useActionData } from 'react-router-dom';
 import FetchInfo from './components/FetchInfo/Fetch-info';
-import { AddingCountry, action } from './components/AddCountry/AddCountry';
+import AddingCountry from './components/AddCountry/AddCountry';
 
 let router = createBrowserRouter([
   {

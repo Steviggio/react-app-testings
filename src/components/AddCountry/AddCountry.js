@@ -1,21 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
 import { Form, redirect, useActionData } from 'react-router-dom';
 
 
-async function getDatas({ request }) {
-  const datas = await fetch("http://localhost:8000/api/country", { method: "POST", headers: "Application/json" })
-    .then((response) => response.json())
-    .catch((error) => {
-      console.log(error)
-    })
-}
+// async function getDatas({ request }) {
+//   const datas = await fetch("http://localhost:8000/api/country", { method: "POST", headers: "Application/json" })
+//     .then((response) => response.json())
+//     .catch((error) => {
+//       console.log(error)
+//     })
+// }
 
-function AddingCountry() {
+
+
+export default function AddingCountry() {
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch("http://localhost:8000/api/country", { method: "POST", body: formData });
+
+    const formJSON = Object.fromEntries(formData.entries());
+    console.log(formJSON)
+  };
+
   const errors = useActionData();
 
   return (
     <>
-      <Form method='post' action={action}>
+      <Form method='post' onSubmit={handleSubmit}>
         <p><input type='text' name='country' placeholder='Name of the country' />
           {errors?.country && <span>{errors.country}</span>}
         </p>
@@ -30,15 +46,15 @@ function AddingCountry() {
 }
 
 
-async function loader({ params }) {
-  const data = await getDatas(params.body);
-  return { data };
-}
+// async function loader({ params }) {
+//   const data = await getDatas(params.body);
+//   return { data };
+// }
 
-async function action({ request }) {
-  const data = Object.fromEntries(await request.formData());
-  console.log(data)
-}
+// async function action({ request }) {
+//   const data = Object.fromEntries(await request.formData());
+//   console.log(data)
+// }
 
 
 // async function action({ request }) {
@@ -59,4 +75,3 @@ async function action({ request }) {
 //   redirect("/")
 // }
 
-export { AddingCountry, action };
