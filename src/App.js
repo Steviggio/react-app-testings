@@ -22,6 +22,7 @@ function Root() {
       <Route path='/' element={<Home />} />
       <Route path='/add-country' element={<AddingCountry />} />
       <Route path='/countries' element={<FetchInfo />} />
+      <Route  />
     </Routes>
   )
 }

@@ -14,16 +14,45 @@ import { Form, useActionData } from 'react-router-dom';
 
 export default function AddingCountry() {
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => { 
     event.preventDefault();
 
     const form = event.target;
     const formData = new FormData(form);
-    const formJSON = Object.fromEntries(formData.entries());
 
-    fetch("http://localhost:8000/api/country", { method: "POST", headers: { "Accept": "*/*", "Content-Type": "Application/json" }, body: formJSON });
+    // Convert datas to JSON
+    const formJSON = {};
+    formData.forEach((value, key) => {
+      formJSON[key] = value;
+    });
 
-    console.log(formJSON)
+    console.log('FORMJSON---------', formJSON)
+
+    const jsonData = JSON.stringify(formJSON);
+
+    console.log("JSONDATA", jsonData)
+
+    try {
+      const response = await fetch("http://localhost:8000/api/country", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "*"
+        },
+        body: jsonData,
+      });
+
+      if (response.status === 201) {
+        console.log("This element has been successfully added to the list.");
+
+      } else {
+        console.log("An error as occurred during the request.");
+
+      }
+    } catch (error) {
+      console.log("An error as occurred during the request.", error);
+
+    }
   };
 
   const errors = useActionData();
@@ -31,7 +60,7 @@ export default function AddingCountry() {
   return (
     <>
       <Form method='post' onSubmit={handleSubmit}>
-        <p><input type='text' name='country' placeholder='Name of the country' />
+        <p><input type='text' name='name' placeholder='Name of the country' />
           {errors?.country && <span>{errors.country}</span>}
         </p>
         <p><input type='text' name='language' placeholder='Language' />
