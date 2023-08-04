@@ -1,9 +1,10 @@
 import React from 'react';
 // import AddingCountry from './components/AddCountry/AddCountry'; // Assure-toi d'importer correctement AddingCountry
 // import Layout from './Layout/Layout';
-import { createBrowserRouter, RouterProvider, Routes, Router, Route, useLoaderData, Form, useActionData } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Routes, Route } from 'react-router-dom';
 import FetchInfo from './components/FetchInfo/Fetch-info';
 import AddingCountry from './components/AddCountry/AddCountry';
+import GetACountry from './components/GetACountry/GetACountry';
 
 let router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ function Root() {
       <Route path='/' element={<Home />} />
       <Route path='/add-country' element={<AddingCountry />} />
       <Route path='/countries' element={<FetchInfo />} />
-      <Route  />
+      <Route path="/get-a-country" element={<GetACountry />} />
     </Routes>
   )
 }

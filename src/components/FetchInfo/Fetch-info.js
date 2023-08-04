@@ -5,10 +5,10 @@ function FetchInfo() {
   const [data, setData] = useState([]);
   // Fetching the datas from my the configured backend route
   useEffect(() => {
-    fetch("http://localhost:8000/api/country")
+    fetch("http://localhost:8000/api/countries")
       .then((response) => response.json())
       .then((data) => setData(data))
-      .catch((error) => console.error('An error as occurred during the datas request'));
+      .catch((error) => console.error('An error as occurred during the request'));
   }, []);
 
   // const info = 'Voici des infos récupérées'

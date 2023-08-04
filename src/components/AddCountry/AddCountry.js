@@ -14,7 +14,7 @@ import { Form, useActionData } from 'react-router-dom';
 
 export default function AddingCountry() {
 
-  const handleSubmit = async (event) => { 
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -33,7 +33,7 @@ export default function AddingCountry() {
     console.log("JSONDATA", jsonData)
 
     try {
-      const response = await fetch("http://localhost:8000/api/country", {
+      const response = await fetch("http://localhost:8000/api/add-country", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
